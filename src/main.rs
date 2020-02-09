@@ -2,6 +2,7 @@
 
 #[macro_use]
 extern crate rocket;
+use rand::{thread_rng, Rng};
 use rocket_contrib::json::Json;
 use serde_derive::{Deserialize, Serialize};
 
@@ -10,6 +11,14 @@ struct QuoteJsonOutput {
     quote: String,
 }
 
+#[derive(Serialize, Deserialize, Debug)]
+struct QuoteApi {
+    quotes: Vec<String>,
+}
+
+const QUOTE_URL: &str =
+    "https://raw.githubusercontent.com/anontyro/alan-partridge-interface/master/data/quotes.json";
+
 #[get("/")]
 fn index() -> &'static str {
     "Hello, world!"
@@ -17,11 +26,25 @@ fn index() -> &'static str {
 
 #[get("/quote")]
 fn quote() -> Json<QuoteJsonOutput> {
+    let quote_list: Vec<String> = get_quotes().unwrap();
+    let quote_len = quote_list.len();
+    let number = thread_rng().gen_range(0, quote_len);
+    println!("{}", quote_list[number]);
+    let output = format!("{}", quote_list[number]);
+
     let test = QuoteJsonOutput {
-        quote: String::from("test quote out"),
+        quote: String::from(output),
     };
 
     Json(test)
+}
+
+fn get_quotes() -> Result<Vec<String>, Box<dyn std::error::Error>> {
+    let url ="https://raw.githubusercontent.com/anontyro/alan-partridge-interface/master/data/quotes.json";
+    let response: QuoteApi = reqwest::get(url)?.json()?;
+    let quotes = response.quotes;
+
+    Ok(quotes)
 }
 
 fn main() {

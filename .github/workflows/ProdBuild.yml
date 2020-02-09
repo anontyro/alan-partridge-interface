@@ -1,0 +1,27 @@
+name: New Prod Build
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          ref: ${{ github.head_ref }}
+      - name: Build the Docker image
+        run: |
+          echo "production build started"
+          COMMIT_ID=`echo $(git rev-parse HEAD)`
+          COMMIT_ID_SHORT=`echo $(git rev-parse HEAD) | cut -c1-7`
+          docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}          
+          IMAGE_TAG=alexjohnwilkinson/alan-partridge-interface:$COMMIT_ID_SHORT
+          IMAGE_TAG_LATEST=alexjohnwilkinson/alan-partridge-interface:latest
+          echo "new image tag created $IMAGE_TAG"
+          docker build --file Dockerfile --tag $IMAGE_TAG --tag $IMAGE_TAG_LATEST .
+          docker push $IMAGE_TAG_LATEST
+          echo "production build: $IMAGE_TAG successfully created"

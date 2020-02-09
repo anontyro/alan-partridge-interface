@@ -17,7 +17,7 @@ struct QuoteApi {
 }
 
 const QUOTE_URL: &str =
-    "https://raw.githubusercontent.com/anontyro/alan-partridge-interface/master/data/quotes.json";
+    "https://raw.githubusercontent.com/anontyro/alan-partridge-interface/quotes/data/quotes.json";
 
 #[get("/")]
 fn index() -> &'static str {
@@ -40,8 +40,7 @@ fn quote() -> Json<QuoteJsonOutput> {
 }
 
 fn get_quotes() -> Result<Vec<String>, Box<dyn std::error::Error>> {
-    let url ="https://raw.githubusercontent.com/anontyro/alan-partridge-interface/master/data/quotes.json";
-    let response: QuoteApi = reqwest::get(url)?.json()?;
+    let response: QuoteApi = reqwest::get(QUOTE_URL)?.json()?;
     let quotes = response.quotes;
 
     Ok(quotes)

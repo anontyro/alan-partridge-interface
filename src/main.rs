@@ -20,16 +20,10 @@ const QUOTE_URL: &str =
     "https://raw.githubusercontent.com/anontyro/alan-partridge-interface/quotes/data/quotes.json";
 
 #[get("/")]
-fn index() -> &'static str {
-    "Hello, world!"
-}
-
-#[get("/quote")]
-fn quote() -> Json<QuoteJsonOutput> {
+fn index() -> Json<QuoteJsonOutput> {
     let quote_list: Vec<String> = get_quotes().unwrap();
     let quote_len = quote_list.len();
     let number = thread_rng().gen_range(0, quote_len);
-    println!("{}", quote_list[number]);
     let output = format!("{}", quote_list[number]);
 
     let test = QuoteJsonOutput {
@@ -47,5 +41,5 @@ fn get_quotes() -> Result<Vec<String>, Box<dyn std::error::Error>> {
 }
 
 fn main() {
-    rocket::ignite().mount("/", routes![index, quote]).launch();
+    rocket::ignite().mount("/", routes![index]).launch();
 }

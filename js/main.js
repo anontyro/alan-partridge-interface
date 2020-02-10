@@ -1,6 +1,6 @@
 const QUOTE_URL = 'https://alanpi.alexwilkinson.co';
 
-const currentQuote = '';
+let currentQuote = '';
 
 const getQuote = async () => {
   try {
@@ -10,3 +10,17 @@ const getQuote = async () => {
     return console.error (err);
   }
 };
+
+const setQuote = async () => {
+  const {quote} = await getQuote ();
+  currentQuote = quote;
+  document.querySelector ('#main-quote').innerText = quote;
+};
+
+(async () => {
+  try {
+    await setQuote ();
+  } catch (err) {
+    console.error (err);
+  }
+}) ();

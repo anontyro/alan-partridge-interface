@@ -1,0 +1,76 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.content {
+  flex: 1 0 auto;
+}
+
+.main-page-header {
+  position: relative;
+  background-image: url("../static/alanp-banner.jpg");
+  height: 30vw;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.main-page-header .header-title {
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  font-size: 40px;
+}
+
+.main-page-body {
+  position: relative;
+}
+
+.main-page-quote-container {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 40%);
+  padding: 10px;
+}
+
+#main-quote {
+  height: 10vh;
+  text-align: center;
+}
+
+.button-container {
+  display: flex;
+  position: relative;
+  text-align: center;
+  margin: auto;
+  cursor: pointer;
+  font-size: 14px;
+  width: 30%;
+}
+
+.button-container .button-img {
+  padding: 10px;
+  background-color:
+    #37935f;
+}
+
+.button-container .button {
+  flex-grow: 1;
+  padding: 10px;
+  background-color:
+    #52be81;
+}
+
+.footer {
+  flex-shrink: 0;
+}

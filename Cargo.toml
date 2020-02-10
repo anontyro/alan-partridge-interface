@@ -9,6 +9,7 @@ edition = "2018"
 [dependencies]
 rocket = "0.4.2"
 rocket_contrib = "0.4.2"
+rocket_cors = "0.5.1"
 rand = "0.7.3"
 reqwest = "0.9.18"
 serde = "*"

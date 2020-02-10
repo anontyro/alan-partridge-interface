@@ -3,7 +3,9 @@
 #[macro_use]
 extern crate rocket;
 use rand::{thread_rng, Rng};
+use rocket::http::Method;
 use rocket_contrib::json::Json;
+use rocket_cors::{AllowedHeaders, AllowedOrigins, Error};
 use serde_derive::{Deserialize, Serialize};
 
 #[derive(Serialize)]
@@ -40,6 +42,21 @@ fn get_quotes() -> Result<Vec<String>, Box<dyn std::error::Error>> {
     Ok(quotes)
 }
 
-fn main() {
-    rocket::ignite().mount("/", routes![index]).launch();
+fn main() -> Result<(), Error> {
+    let allowed_origins = AllowedOrigins::All;
+    let cors = rocket_cors::CorsOptions {
+        allowed_origins,
+        allowed_methods: vec![Method::Get].into_iter().map(From::from).collect(),
+        allowed_headers: AllowedHeaders::some(&["Authorization", "Accept"]),
+        allow_credentials: true,
+        ..Default::default()
+    }
+    .to_cors()?;
+
+    rocket::ignite()
+        .mount("/", routes![index])
+        .attach(cors)
+        .launch();
+
+    Ok(())
 }

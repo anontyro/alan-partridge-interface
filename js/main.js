@@ -14,7 +14,7 @@ const getQuote = async () => {
 const setQuote = async () => {
   const {quote} = await getQuote ();
   currentQuote = quote;
-  document.querySelector ('#main-quote').innerText = quote;
+  document.querySelector ('#quote-text').innerText = quote;
 };
 
 (async () => {

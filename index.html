@@ -12,15 +12,21 @@
 <body>
   <div class="content">
     <div class="main-page-header">
-      <div class="header-title">Alan Partridge </div>
+      <div class="header-title-container">
+        <div class="header-title">Alan Partridge </div>
+        <div class="header-subtitle">Kiss my interface </div>
+      </div>
     </div>
 
     <div class="main-page-body">
       <div class="main-page-quote-container">
-        <div id='main-quote'></div>
-        <div onclick="setQuote()" class="button-container">
-          <div class="button-img">GET</div>
-          <div class="button">A Partridge</div>
+        <div id='main-quote'>
+          <p id="quote-text"></p>
+        </div>
+        <div class="button-controls">
+          <div onclick="setQuote()" class="button-default">
+            <div class="button-label">Aha!</div>
+          </div>
         </div>
       </div>
     </div>

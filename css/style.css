@@ -7,6 +7,8 @@ body {
   display: flex;
   flex-direction: column;
   margin: 0;
+  background-color: black;
+  color: whitesmoke;
 }
 
 .content {
@@ -15,17 +17,27 @@ body {
 
 .main-page-header {
   position: relative;
-  background-image: url("../static/alanp-banner.jpg");
   height: 30vw;
   background-repeat: no-repeat;
   background-size: cover;
+  background-image: linear-gradient(rgba(0, 0, 255, 0), rgb(0, 0, 0)), url("../static/alanp-banner.jpg");
+}
+
+.main-page-header .header-title-container {
+  position: absolute;
+  text-align: center;
+  width: 70%;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, 40%);
 }
 
 .main-page-header .header-title {
-  position: absolute;
-  bottom: 0;
-  left: 10px;
   font-size: 40px;
+}
+
+.main-page-header .header-subtitle {
+  font-size: 20px;
 }
 
 .main-page-body {
@@ -39,13 +51,38 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, 40%);
-  padding: 10px;
+  transform: translate(-50%, 30%);
 }
 
 #main-quote {
-  height: 10vh;
-  text-align: center;
+  display: flex;
+  height: 15vh;
+  margin: 50px;
+  padding: 10px;
+  border: 2px solid #f5f5f5ba;
+  border-radius: 20px;
+}
+
+#quote-text {
+  margin: auto;
+  padding: 0;
+  text-align: left;
+  line-height: 1.5em;
+}
+
+#quote-text::before {
+  color: #ccc;
+  content: open-quote;
+  font-size: 4em;
+  line-height: 0.01em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+
+.button-controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
 .button-container {
@@ -56,12 +93,34 @@ body {
   cursor: pointer;
   font-size: 14px;
   width: 30%;
+  transition: all .2s ease-in-out;
+}
+
+.button-default {
+  width: 150px;
+  text-align: center;
+  display: flex;
+  border: 2px solid #f5f5f5ba;
+  border-radius: 20px;
+  font-size: 18px;
+  transition: all .2s ease-in-out;
+}
+
+.button-default:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.button-default .button-label {
+  margin: auto;
+  padding: 4px;
 }
 
 .button-container .button-img {
   padding: 10px;
-  background-color:
-    #37935f;
+  background-color: #37935f;
+  color: black;
+  font-weight: bolder;
 }
 
 .button-container .button {
@@ -73,4 +132,7 @@ body {
 
 .footer {
   flex-shrink: 0;
+  background-color: black;
+  height: 5vw;
+  color: white;
 }

@@ -17,7 +17,7 @@ body {
 
 .main-page-header {
   position: relative;
-  height: 30vw;
+  height: 40vw;
   background-repeat: no-repeat;
   background-size: cover;
   background-image: linear-gradient(rgba(0, 0, 255, 0), rgb(0, 0, 0)), url("../static/alanp-banner.jpg");
@@ -27,7 +27,7 @@ body {
   position: absolute;
   text-align: center;
   width: 70%;
-  top: 80%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, 40%);
 }
@@ -47,20 +47,42 @@ body {
 .main-page-quote-container {
   display: flex;
   flex-direction: column;
-  width: 70%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, 30%);
+  position: relative;
+  width: 100%;
+  margin-top: 60px;
 }
 
 #main-quote {
   display: flex;
-  height: 15vh;
-  margin: 30px;
+  height: 50vh;
+  margin: 30px 0px;
   padding: 10px;
   border: 2px solid #f5f5f5ba;
   border-radius: 20px;
+
+}
+
+@media (min-width: 640px) {
+  .main-page-header {
+    height: 30vw;
+  }
+
+  .main-page-header .header-title-container {
+    top: 80%;
+  }
+
+  .main-page-quote-container {
+    width: 70%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 30%);
+  }
+
+  #main-quote {
+    height: 15vh;
+    margin: 30px;
+  }
 }
 
 #quote-text {
